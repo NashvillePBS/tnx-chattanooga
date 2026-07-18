@@ -1,0 +1,385 @@
+{
+  "guide": {
+    "show": "Tennessee Crossroads",
+    "eyebrow": "A Crossroads Guide · 40 Years",
+    "titleHTML": "A Traveler's Guide<br>to <em>Chattanooga</em>",
+    "city": "Chattanooga",
+    "sub": "Four decades of back-road stories, gathered into one trip through the Scenic City — the riverfront, the railroads, the mountain-town cafes, and the makers our hosts found along the way.",
+    "metaNote": "every one a real Crossroads segment",
+    "mapLede": "Every stop our cameras visited, plotted across the city.",
+    "quote": "“Come travel the highways and by-ways of Tennessee.”",
+    "note": "We hope this guide leads you to new memories, a hidden gem, or someplace you’ve always meant to visit. Thanks for making Tennessee Crossroads part of your journey.",
+    "colophonHTML": "Tennessee Crossroads is a <b>Nashville PBS</b> production · Each place began as a story on the show"
+  },
+  "print": {
+    "coverImage": "brochure/cache/cover-chattanooga.jpg",
+    "coverCaption": "The Chattanooga Choo Choo, Market Street",
+    "map": {
+      "bounds": {
+        "west": -85.46,
+        "east": -85.18,
+        "centerLat": 35.035
+      },
+      "riverWide": [
+        "Tennessee"
+      ],
+      "riverWideIn": 0.42,
+      "waterLabel": {
+        "text": "Tennessee River",
+        "lat": 35.072,
+        "lng": -85.345
+      },
+      "areaLabels": [
+        {
+          "name": "ST. ELMO",
+          "lat": 35.002,
+          "lng": -85.333
+        },
+        {
+          "name": "LOOKOUT MOUNTAIN",
+          "lat": 34.972,
+          "lng": -85.352
+        },
+        {
+          "name": "BRAINERD",
+          "lat": 35.028,
+          "lng": -85.22
+        },
+        {
+          "name": "HIXSON",
+          "lat": 35.105,
+          "lng": -85.26
+        },
+        {
+          "name": "CHATTANOOGA",
+          "lat": 35.095,
+          "lng": -85.34,
+          "big": true
+        }
+      ],
+      "inset": {
+        "name": "Downtown",
+        "west": -85.325,
+        "east": -85.285,
+        "south": 35.022,
+        "north": 35.062,
+        "box": [
+          0.6,
+          4.1,
+          6.5,
+          7.9
+        ]
+      },
+      "cartouche": [
+        0.6,
+        0.6,
+        6.5,
+        3.1
+      ],
+      "legend": [
+        0.6,
+        12.4,
+        6.5,
+        2.9
+      ],
+      "attrib": [
+        0.6,
+        15.6,
+        6.5,
+        1.2
+      ]
+    }
+  },
+  "sections": [
+    {
+      "key": "eat",
+      "title": "Eat & Drink",
+      "intro": "Barbecue on a hillside, a century-old snack made famous by the moon, and the bakeries and cafes that keep the Scenic City fed.",
+      "stops": [
+        {
+          "name": "Hillbilly Willy's Bar-B-Q",
+          "host": "Susan Watson",
+          "lat": 35.02142,
+          "lng": -85.36577,
+          "blurb": "Behind every great barbecue story is an interesting family — and the folks at Hillbilly Willy's prove the rule. Susan Watson found the smoky hot spot worth crossing town for.",
+          "addr": "115 Browns Ferry Rd",
+          "phone": "(423) 821-2272",
+          "site": "hillbillywillys.com",
+          "siteUrl": "https://www.hillbillywillys.com/",
+          "link": "https://tennesseecrossroads.org/hillbilly-willys-bar-b-q/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/hillbilly-willys-bar-b-q.jpg"
+        },
+        {
+          "name": "Bea's Restaurant",
+          "host": "Rob Wilds",
+          "lat": 34.990497,
+          "lng": -85.286812,
+          "blurb": "At Bea's, the lazy Susan does the passing and the table does the talking — dinner comes family-style, and nobody leaves hungry. Rob Wilds pulls up a chair.",
+          "addr": "4500 Dodds Ave",
+          "phone": "(423) 867-3618",
+          "site": "",
+          "siteUrl": "",
+          "link": "https://tennesseecrossroads.org/beas-restaurant/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/beas-restaurant.jpg"
+        },
+        {
+          "name": "Purple Daisy Picnic Cafe",
+          "host": "Ken Wilshire",
+          "lat": 35.007985,
+          "lng": -85.328591,
+          "blurb": "Life's a picnic at this former St. Elmo gas station at the foot of Lookout Mountain, where Ken Wilshire found plate lunches and front-porch charm.",
+          "addr": "4001 St. Elmo Ave",
+          "phone": "(423) 822-6477",
+          "site": "purpledaisypicnic.com",
+          "siteUrl": "https://www.purpledaisypicnic.com/",
+          "link": "https://tennesseecrossroads.org/purple-daisy-picnic-cafe/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/purple-daisy-picnic-cafe.jpg"
+        },
+        {
+          "name": "Boathouse Rotisserie & Raw Bar",
+          "host": "Ken Wilshire",
+          "lat": 35.055511,
+          "lng": -85.281949,
+          "blurb": "A couple of old rowboats, a view of the water, and some of the finest casual dining on the banks of the Tennessee River. Ken Wilshire takes a seat at the Boathouse.",
+          "addr": "1459 Riverside Dr",
+          "phone": "(423) 622-0122",
+          "site": "boathousechattanooga.com",
+          "siteUrl": "http://www.boathousechattanooga.com",
+          "link": "https://tennesseecrossroads.org/boathouse-rotisserie-raw-bar/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/boathouse-rotisserie-raw-bar.jpg"
+        },
+        {
+          "name": "Niedlov's Breadworks",
+          "host": "Ken Wilshire",
+          "lat": 35.035363,
+          "lng": -85.305037,
+          "blurb": "Ken Wilshire visits the Southside bakery whose hand-shaped loaves helped make Main Street a destination — proof some places really are better than sliced bread.",
+          "addr": "215 East Main St",
+          "phone": "(423) 756-0303",
+          "site": "niedlovs.com",
+          "siteUrl": "https://niedlovs.com/",
+          "link": "https://tennesseecrossroads.org/niedlovs-breadworks/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/niedlovs-breadworks.jpg"
+        },
+        {
+          "name": "City Cafe",
+          "host": "Ken Wilshire",
+          "lat": 35.045265,
+          "lng": -85.312627,
+          "blurb": "Ken Wilshire stops downtown for a nostalgic, diner-style dining experience — comfort food served with a generous side of Chattanooga character.",
+          "addr": "901 Carter St",
+          "phone": "(423) 634-9191",
+          "site": "citycafemenu.com",
+          "siteUrl": "https://www.citycafemenu.com/",
+          "link": "https://tennesseecrossroads.org/city-cafe/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/city-cafe.jpg"
+        },
+        {
+          "name": "Moon Pies",
+          "host": "Ken Wilshire",
+          "lat": 35.05903,
+          "lng": -85.324667,
+          "blurb": "The MoonPie — the only treat like it in the universe — has been made by Chattanooga Bakery for more than a century. Ken Wilshire asks for the moon and gets it.",
+          "addr": "900 Manufacturers Rd",
+          "phone": "(800) 251-3403",
+          "site": "moonpie.com",
+          "siteUrl": "https://moonpie.com/",
+          "link": "https://tennesseecrossroads.org/moon-pies/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/moon-pies.jpg"
+        }
+      ]
+    },
+    {
+      "key": "see",
+      "title": "See & Explore",
+      "intro": "From an aquarium on the riverfront to the birthplace of the tow truck — the stops that show off the Scenic City's range.",
+      "stops": [
+        {
+          "name": "Tennessee Aquarium",
+          "host": "Joe Elmore",
+          "lat": 35.055863,
+          "lng": -85.311021,
+          "blurb": "From mountain streams to the open ocean, the Tennessee Aquarium takes you on a water journey right on the riverfront — the anchor of Chattanooga's downtown revival.",
+          "addr": "1 Broad St",
+          "phone": "(800) 262-0695",
+          "site": "tnaqua.org",
+          "siteUrl": "https://tnaqua.org/",
+          "link": "https://tennesseecrossroads.org/tennessee-aquarium/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/tennessee-aquarium.jpg"
+        },
+        {
+          "name": "Hunter Museum of American Art",
+          "host": "Rob Wilds",
+          "lat": 35.055839,
+          "lng": -85.306112,
+          "blurb": "Perched on a bluff above the Tennessee River, the Hunter holds one of the South's premier collections of American art — and brings it down the hill to the people.",
+          "addr": "10 Bluff View",
+          "phone": "(423) 267-0968",
+          "site": "huntermuseum.org",
+          "siteUrl": "http://www.huntermuseum.org/",
+          "link": "https://tennesseecrossroads.org/hunter-museum-of-american-art/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/hunter-museum-of-american-art.jpg"
+        },
+        {
+          "name": "Songbirds Guitar Museum",
+          "host": "Joe Elmore",
+          "lat": 35.036776,
+          "lng": -85.305408,
+          "blurb": "When New York curators went looking for a home for their rare guitar collection, Chattanooga got the call. Joe Elmore tours Songbirds, just steps from the Choo Choo.",
+          "addr": "35 Station St",
+          "site": "songbirdsfoundation.org",
+          "siteUrl": "https://songbirdsfoundation.org/",
+          "link": "https://tennesseecrossroads.org/songbirds-guitar-museum/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/songbirds-guitar-museum.jpg"
+        },
+        {
+          "name": "International Towing & Recovery Museum",
+          "host": "Joe Elmore",
+          "lat": 35.016908,
+          "lng": -85.322731,
+          "blurb": "Chattanooga is the birthplace of the wrecker, and this one-of-a-kind Broad Street museum tells the story — gleaming vintage tow trucks and all. Joe Elmore takes the tour.",
+          "addr": "3315 Broad St",
+          "site": "internationaltowingmuseum.org",
+          "siteUrl": "https://internationaltowingmuseum.org/",
+          "link": "https://tennesseecrossroads.org/international-towing-recovery-museum/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/towing-recovery-museum.jpg"
+        },
+        {
+          "name": "National Medal of Honor Heritage Center",
+          "host": "Joe Elmore",
+          "lat": 35.05534,
+          "lng": -85.310027,
+          "blurb": "Steps from the Aquarium, this center offers an up-close experience with American military heroes — and tells the Chattanooga story at the roots of the Medal of Honor.",
+          "addr": "2 W Aquarium Way",
+          "phone": "(423) 877-2525",
+          "site": "mohhc.org",
+          "siteUrl": "https://www.mohhc.org/",
+          "link": "https://tennesseecrossroads.org/national-medal-of-honor-heritage-center/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/10/NationalMedalofHonorHeritageCenter.jpeg"
+        },
+        {
+          "name": "Chattanooga Zoo",
+          "host": "Susan Watson",
+          "lat": 35.039083,
+          "lng": -85.282891,
+          "blurb": "Wildlife from the Gombe Forest to the Himalayas, all in one Chattanooga afternoon. Susan Watson drops in on the zoo's newest furry friends.",
+          "addr": "301 N Holtzclaw Ave",
+          "phone": "(423) 697-1322",
+          "site": "chattzoo.org",
+          "siteUrl": "http://www.chattzoo.org",
+          "link": "https://tennesseecrossroads.org/chattanooga-zoo/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/chattanooga-zoo.jpg"
+        },
+        {
+          "name": "Bessie Smith Cultural Center",
+          "host": "Rob Wilds",
+          "blurb": "Part museum, part living stage, the Bessie Smith Cultural Center keeps the Empress of the Blues — and the story of Black Chattanooga — front and center.",
+          "addr": "Downtown Chattanooga",
+          "phone": "(423) 266-8658",
+          "site": "bessiesmithcc.org",
+          "siteUrl": "http://www.bessiesmithcc.org",
+          "link": "https://tennesseecrossroads.org/bessie-smith-cultural-center/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/bessie-smith-cultural-center.jpg"
+        },
+        {
+          "name": "EPB Holiday Windows",
+          "host": "Susan Watson",
+          "blurb": "Every holiday season, employees of Chattanooga's Electric Power Board turn downtown windows into dazzling displays — a tradition that catches grown-ups in the same magic as kids. Seasonal.",
+          "addr": "10 W Martin Luther King Jr Blvd",
+          "phone": "(423) 648-1372",
+          "site": "epb.com",
+          "siteUrl": "https://epb.com/about-epb/news/articles/visit-epb-2020-holiday-windows-virtually-or-in-person",
+          "link": "https://tennesseecrossroads.org/epb-windows/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/epb-windows.jpg"
+        },
+        {
+          "name": "North Pole Limited",
+          "host": "Rob Wilds",
+          "lat": 35.067899,
+          "lng": -85.206139,
+          "blurb": "Come Christmastime, the Tennessee Valley Railroad becomes the North Pole Limited — an all-aboard house call on Santa that kids remember for years. Seasonal.",
+          "addr": "4119 Cromwell Rd",
+          "phone": "(423) 894-8028",
+          "site": "tvrail.com",
+          "siteUrl": "https://www.tvrail.com/",
+          "link": "https://tennesseecrossroads.org/north-pole-limited/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/north-pole-limited.jpg"
+        }
+      ]
+    },
+    {
+      "key": "stay",
+      "title": "Stay a While",
+      "intro": "Pardon me, boys — the landmark that turned a big-band song into a place to spend the night.",
+      "stops": [
+        {
+          "name": "Chattanooga Choo Choo",
+          "host": "Rob Wilds",
+          "lat": 35.037061,
+          "lng": -85.306921,
+          "blurb": "The 1909 train depot made famous by a big-band song found new life as a hotel and gathering place. Rob Wilds boards at the Chattanooga Choo Choo.",
+          "addr": "1400 Market St",
+          "phone": "(423) 266-5000",
+          "site": "choochoo.com",
+          "siteUrl": "http://www.choochoo.com",
+          "link": "https://tennesseecrossroads.org/chattanooga-choo-choo/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/chattanooga-choo-choo.jpg"
+        }
+      ]
+    },
+    {
+      "key": "makers",
+      "title": "Makers",
+      "intro": "Glass from fire, dresses from junkyard metal, art from concrete and thin air — Chattanooga's makers work in unlikely materials.",
+      "stops": [
+        {
+          "name": "Chris Mosey, Glass Blower",
+          "host": "Ken Wilshire",
+          "lat": 35.052008,
+          "lng": -85.310856,
+          "blurb": "Glass has been made for 3,500 years; Chris Mosey makes it feel brand new. Watch molten color take shape at his downtown Ignis Glass Studio.",
+          "addr": "409 Broad St",
+          "phone": "(423) 265-2565",
+          "site": "ignisglass.com",
+          "siteUrl": "http://www.ignisglass.com/",
+          "link": "https://tennesseecrossroads.org/chris-mosey-glass-blower/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/chris-mosey-glass-blower.jpg"
+        },
+        {
+          "name": "John Petrey, Artist",
+          "host": "Ken Wilshire",
+          "lat": 35.033698,
+          "lng": -85.300673,
+          "blurb": "Sculptor John Petrey tailors elegant dresses from the unlikeliest fabric — metal and materials rescued from the junkyard. Ken Wilshire visits his Main Street studio.",
+          "addr": "559 East Main St",
+          "site": "johnpetrey.com",
+          "siteUrl": "https://www.johnpetrey.com/",
+          "link": "https://tennesseecrossroads.org/john-petrey-artist/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/john-petrey-artist-scaled.jpg"
+        },
+        {
+          "name": "Kem Alexander, Concrete Artist",
+          "host": "Tammi Arender",
+          "lat": 35.068749,
+          "lng": -85.306181,
+          "blurb": "In Kem Alexander's hands, rough concrete becomes something uncommonly beautiful. Tammi Arender meets the Chattanooga artist who pours her art in slabs.",
+          "addr": "301 Noll St",
+          "site": "kemalexander.com",
+          "siteUrl": "https://kemalexander.com/home.html",
+          "link": "https://tennesseecrossroads.org/kem-alexander-concrete-artist/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/kem-alexander-concrete-artist.jpg"
+        },
+        {
+          "name": "Ron Lowery, Photographer",
+          "host": "Joe Elmore",
+          "blurb": "Ron Lowery combines a love of flying with a passion for photography, capturing Tennessee's rivers and ridges from the open air. You may never see them the same way again.",
+          "addr": "Chattanooga",
+          "site": "ronlowery.com",
+          "siteUrl": "https://www.ronlowery.com/",
+          "link": "https://tennesseecrossroads.org/ron-lowery-photographer/",
+          "img": "https://tennesseecrossroads.org/wp-content/uploads/2021/02/ron-lowery-photographer.jpg"
+        }
+      ]
+    }
+  ]
+}
