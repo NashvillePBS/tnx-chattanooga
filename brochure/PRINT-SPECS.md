@@ -44,3 +44,20 @@ repeated folding. Final stock choice is the printer's call with Shane.
 - No funder credits appear anywhere on this piece (intentional).
 - Host names ARE included on this piece (intentional; the web/home-print
   itinerary differs).
+
+## Proofing & edits workflow
+
+1. **Text or stop changes** (names, blurbs, phones, adding/removing stops):
+   edit `data/guide.json` and re-run `python3 brochure/build_brochure.py` —
+   fresh TIFFs in seconds, and the web guide + home itinerary update from the
+   same file, so nothing drifts.
+2. **Visual/layout tweaks or designer markup**: run
+   `python3 brochure/export_svg.py` → `brochure/out/front.svg`, a layered,
+   live-text vector of the map side that opens natively in Illustrator
+   (named groups: water, road classes, shields, pins, labels, cartouche,
+   inset, legend, attribution). Install the fonts from `brochure/fonts/`
+   first or AI will substitute. SVG is RGB — if edits are finaled in AI,
+   export the print file from AI; otherwise the CMYK TIFFs stay canonical.
+3. The back (listings) side is intentionally not exported as SVG: it is pure
+   text driven by `data/guide.json`, and editing it there keeps every format
+   in sync.
