@@ -127,9 +127,13 @@ def build():
         x, y, w, h = bb.MAPCONF[key]
         return (bb.IN(x)+BX, bb.IN(y)+BX, bb.IN(x+w)+BX, bb.IN(y+h)+BX)
     cart = conf_box("cartouche"); legend = conf_box("legend"); attrib = conf_box("attrib")
-    ix, iy, iw_in, ih_in = bb.MAPCONF["inset"]["box"]
-    inset_box = (bb.IN(ix)+BX, bb.IN(iy)+BX, bb.IN(ix+iw_in)+BX, bb.IN(iy+ih_in)+BX)
-    placed = [cart, inset_box, legend, attrib]
+    placed = [cart, legend, attrib]
+    INSET = bb.MAPCONF.get("inset")
+    inset_box = None
+    if INSET:
+        ix, iy, iw_in, ih_in = INSET["box"]
+        inset_box = (bb.IN(ix)+BX, bb.IN(iy)+BX, bb.IN(ix+iw_in)+BX, bb.IN(iy+ih_in)+BX)
+        placed.append(inset_box)
 
     # shields
     shields = []
@@ -159,13 +163,15 @@ def build():
     L.append('<g id="route-shields">' + "".join(shields) + "</g>")
 
     # inset viewport on main map
-    ib = bb.MAPCONF["inset"]
-    r0 = P(ib["north"], ib["west"]); r1 = P(ib["south"], ib["east"])
-    L.append(f'<g id="inset-viewport"><rect x="{r0[0]:.0f}" y="{r0[1]:.0f}" width="{r1[0]-r0[0]:.0f}" height="{r1[1]-r0[1]:.0f}" fill="none" stroke="{H(bb.TNX_BLUE)}" stroke-width="6"/>'
-             f'<rect x="{r0[0]+8:.0f}" y="{r0[1]+8:.0f}" width="{r1[0]-r0[0]-16:.0f}" height="{r1[1]-r0[1]-16:.0f}" fill="none" stroke="#ffffff" stroke-width="3"/></g>')
+    ib = INSET
+    if INSET:
+        r0 = P(ib["north"], ib["west"]); r1 = P(ib["south"], ib["east"])
+        L.append(f'<g id="inset-viewport"><rect x="{r0[0]:.0f}" y="{r0[1]:.0f}" width="{r1[0]-r0[0]:.0f}" height="{r1[1]-r0[1]:.0f}" fill="none" stroke="{H(bb.TNX_BLUE)}" stroke-width="6"/>'
+                 f'<rect x="{r0[0]+8:.0f}" y="{r0[1]+8:.0f}" width="{r1[0]-r0[0]-16:.0f}" height="{r1[1]-r0[1]-16:.0f}" fill="none" stroke="#ffffff" stroke-width="3"/></g>')
 
     # pins (same inset split + nudge as raster)
     def in_inset(s):
+        if not ib: return False
         return ib["west"] < s["lng"] < ib["east"] and ib["south"] < s["lat"] < ib["north"]
     main_pins = [s for s in bb.PINNED if not in_inset(s)]
     inset_pins = [s for s in bb.PINNED if in_inset(s)]
@@ -222,8 +228,8 @@ def build():
     tx = cx0 + bb.IN(2.2)
     rib, rw, rh = svg_ribbon(tx, cart[1]+bb.IN(0.34), bb.GUIDE["eyebrow"].upper(), 8)
     c += rib
-    c.append(text_el(tx, cart[1]+bb.IN(0.78), "A Traveler's Guide", OS, PX(24), H(bb.TNX_BLUE), weight="800"))
-    c.append(text_el(tx, cart[1]+bb.IN(1.18), f"to {bb.CITY}", OS, PX(24), H(bb.TNX_RED), weight="800"))
+    c.append(text_el(tx, cart[1]+bb.IN(0.78), bb.GUIDE.get("printTitle1", "A Traveler's Guide"), OS, PX(24), H(bb.TNX_BLUE), weight="800"))
+    c.append(text_el(tx, cart[1]+bb.IN(1.18), bb.GUIDE.get("printTitle2", f"to {bb.CITY}"), OS, PX(24), H(bb.TNX_RED), weight="800"))
     ry = cart[1]+bb.IN(1.85)
     dots = "".join(f'<circle cx="{tx+i*bb.IN(0.115):.0f}" cy="{ry}" r="4" fill="{H(bb.TNX_BLUE)}"/>' for i in range(28))
     c.append(f'<g>{dots}<circle cx="{tx+4}" cy="{ry}" r="14" fill="{H(bb.TNX_RED)}"/>'
@@ -232,31 +238,32 @@ def build():
     L.append('<g id="cartouche">' + "".join(c) + "</g>")
 
     # inset
-    iw, ih = inset_box[2]-inset_box[0], inset_box[3]-inset_box[1]
-    Pi = lambda lat, lng: bb.proj(lat, lng, iw, ih, ib["west"], ib["east"], ib["south"], ib["north"])
-    igeo, _ = geo_layers(Pi, scale=1.7)
-    inner = f'<rect width="{iw}" height="{ih}" fill="{H(bb.CREAM)}"/>' \
-            + "".join(igeo["water"] + igeo["river"] + igeo["secondary"]
-                      + igeo["primary"] + igeo["trunk"] + igeo["motorway"])
-    ipins, ipin_boxes = [], []
-    for s in sorted(inset_pins, key=lambda s: s["no"]):
-        x, y = Pi(s["lat"], s["lng"]); r = bb.IN(0.38)/2
-        box = (x-r, y-r, x+r, y+r)
-        for dx, dy in ((0,0),(bb.IN(0.42),0),(-bb.IN(0.42),0),(0,bb.IN(0.42)),(0,-bb.IN(0.42)),(bb.IN(0.42),bb.IN(0.42))):
-            cand = (box[0]+dx, box[1]+dy, box[2]+dx, box[3]+dy)
-            if not any(bb.rects_overlap(cand, p, m=bb.IN(0.05)) for p in ipin_boxes):
-                if (dx, dy) != (0, 0):
-                    ipins.append(f'<line x1="{x:.0f}" y1="{y:.0f}" x2="{x+dx:.0f}" y2="{y+dy:.0f}" stroke="{H(bb.TNX_RED)}" stroke-width="6"/>')
-                x, y, box = x+dx, y+dy, cand
-                break
-        ipins.append(svg_pin(x, y, s["no"], size_in=0.32))
-        ipin_boxes.append(box)
-    rib2, _, _ = svg_ribbon(bb.IN(0.18), bb.IN(0.18), bb.MAPCONF["inset"]["name"].upper(), 9)
-    L.append(f'<g id="inset" transform="translate({inset_box[0]},{inset_box[1]})">'
-             f'<clipPath id="insetclip"><rect width="{iw}" height="{ih}"/></clipPath>'
-             f'<g clip-path="url(#insetclip)">{inner}{"".join(ipins)}</g>'
-             f'<rect width="{iw}" height="{ih}" fill="none" stroke="{H(bb.TNX_BLUE)}" stroke-width="8"/>'
-             + "".join(rib2) + "</g>")
+    if INSET:
+      iw, ih = inset_box[2]-inset_box[0], inset_box[3]-inset_box[1]
+      Pi = lambda lat, lng: bb.proj(lat, lng, iw, ih, ib["west"], ib["east"], ib["south"], ib["north"])
+      igeo, _ = geo_layers(Pi, scale=1.7)
+      inner = f'<rect width="{iw}" height="{ih}" fill="{H(bb.CREAM)}"/>' \
+              + "".join(igeo["water"] + igeo["river"] + igeo["secondary"]
+                        + igeo["primary"] + igeo["trunk"] + igeo["motorway"])
+      ipins, ipin_boxes = [], []
+      for s in sorted(inset_pins, key=lambda s: s["no"]):
+          x, y = Pi(s["lat"], s["lng"]); r = bb.IN(0.38)/2
+          box = (x-r, y-r, x+r, y+r)
+          for dx, dy in ((0,0),(bb.IN(0.42),0),(-bb.IN(0.42),0),(0,bb.IN(0.42)),(0,-bb.IN(0.42)),(bb.IN(0.42),bb.IN(0.42))):
+              cand = (box[0]+dx, box[1]+dy, box[2]+dx, box[3]+dy)
+              if not any(bb.rects_overlap(cand, p, m=bb.IN(0.05)) for p in ipin_boxes):
+                  if (dx, dy) != (0, 0):
+                      ipins.append(f'<line x1="{x:.0f}" y1="{y:.0f}" x2="{x+dx:.0f}" y2="{y+dy:.0f}" stroke="{H(bb.TNX_RED)}" stroke-width="6"/>')
+                  x, y, box = x+dx, y+dy, cand
+                  break
+          ipins.append(svg_pin(x, y, s["no"], size_in=0.32))
+          ipin_boxes.append(box)
+      rib2, _, _ = svg_ribbon(bb.IN(0.18), bb.IN(0.18), INSET["name"].upper(), 9)
+      L.append(f'<g id="inset" transform="translate({inset_box[0]},{inset_box[1]})">'
+               f'<clipPath id="insetclip"><rect width="{iw}" height="{ih}"/></clipPath>'
+               f'<g clip-path="url(#insetclip)">{inner}{"".join(ipins)}</g>'
+               f'<rect width="{iw}" height="{ih}" fill="none" stroke="{H(bb.TNX_BLUE)}" stroke-width="8"/>'
+               + "".join(rib2) + "</g>")
 
     # legend
     lg = [f'<rect x="{legend[0]}" y="{legend[1]}" width="{legend[2]-legend[0]}" height="{legend[3]-legend[1]}" fill="#ffffff" stroke="{H(bb.TNX_BLUE)}" stroke-width="8"/>']

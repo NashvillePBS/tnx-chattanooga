@@ -223,25 +223,31 @@ def render_front():
         x, y, w, h = MAPCONF[key]
         return (IN(x)+BX, IN(y)+BX, IN(x+w)+BX, IN(y+h)+BX)
     cart = conf_box("cartouche")
-    ix, iy, iw_in, ih_in = MAPCONF["inset"]["box"]
-    inset_box = (IN(ix)+BX, IN(iy)+BX, IN(ix+iw_in)+BX, IN(iy+ih_in)+BX)
     legend = conf_box("legend")
     attrib = conf_box("attrib")
-    placed += [cart, inset_box, legend, attrib]
+    placed += [cart, legend, attrib]
+    INSET = MAPCONF.get("inset")
+    inset_box = None
+    if INSET:
+        ix, iy, iw_in, ih_in = INSET["box"]
+        inset_box = (IN(ix)+BX, IN(iy)+BX, IN(ix+iw_in)+BX, IN(iy+ih_in)+BX)
+        placed.append(inset_box)
 
     draw_shields(d, buckets, placed)
 
-    # ---- pins (dense-cluster pins live in the inset) ----
-    ib = MAPCONF["inset"]
+    # ---- pins (dense-cluster pins live in the inset, when one is configured) ----
+    ib = INSET
     def in_inset(s):
+        if not ib: return False
         return ib["west"] < s["lng"] < ib["east"] and ib["south"] < s["lat"] < ib["north"]
     main_pins = [s for s in PINNED if not in_inset(s)]
     inset_pins = [s for s in PINNED if in_inset(s)]
 
-    # inset viewport rectangle on the main map
-    r0 = proj(ib["north"], ib["west"]); r1 = proj(ib["south"], ib["east"])
-    d.rectangle((r0[0], r0[1], r1[0], r1[1]), outline=TNX_BLUE, width=6)
-    d.rectangle((r0[0]+8, r0[1]+8, r1[0]-8, r1[1]-8), outline=WHITE, width=3)
+    if INSET:
+        # inset viewport rectangle on the main map
+        r0 = proj(ib["north"], ib["west"]); r1 = proj(ib["south"], ib["east"])
+        d.rectangle((r0[0], r0[1], r1[0], r1[1]), outline=TNX_BLUE, width=6)
+        d.rectangle((r0[0]+8, r0[1]+8, r1[0]-8, r1[1]-8), outline=WHITE, width=3)
 
     pin_boxes = []
     for s in sorted(main_pins, key=lambda s: s["no"]):
@@ -281,9 +287,10 @@ def render_front():
     lh = paste_logo(img, os.path.join(ROOT, "cache", "logo-tnx.png"), cx0, cart[1]+IN(0.28), IN(1.9))
     tx = cx0 + IN(2.2)
     ribbon(d, tx, cart[1]+IN(0.34), GUIDE["eyebrow"].upper(), RB(8))
-    title = f"A Traveler's Guide to {CITY}"
-    d.text((tx, cart[1]+IN(0.78)), "A Traveler's Guide", font=OSXB(24), fill=TNX_BLUE)
-    d.text((tx, cart[1]+IN(1.18)), f"to {CITY}", font=OSXB(24), fill=TNX_RED)
+    pt1 = GUIDE.get("printTitle1", "A Traveler's Guide")
+    pt2 = GUIDE.get("printTitle2", f"to {CITY}")
+    d.text((tx, cart[1]+IN(0.78)), pt1, font=OSXB(24), fill=TNX_BLUE)
+    d.text((tx, cart[1]+IN(1.18)), pt2, font=OSXB(24), fill=TNX_RED)
     # route motif
     ry = cart[1]+IN(1.85)
     for i in range(28):
@@ -293,6 +300,8 @@ def render_front():
     d.text((tx, ry+IN(0.14)), f"{TOTAL} STOPS · {GUIDE['metaNote'].upper()}", font=RB(6.5), fill=MUTED)
 
     # ---- inset ----
+    if not INSET:
+        return _finish_front(img, d, cart, legend, attrib)
     iw, ih = inset_box[2]-inset_box[0], inset_box[3]-inset_box[1]
     sub = Image.new("RGB", (iw, ih), CREAM)
     sd = ImageDraw.Draw(sub)
@@ -314,8 +323,10 @@ def render_front():
     img.paste(sub, (inset_box[0], inset_box[1]))
     d.rectangle(inset_box, outline=TNX_BLUE, width=8)
     rw, rh = ribbon(d, inset_box[0]+IN(0.18), inset_box[1]+IN(0.18),
-                    MAPCONF["inset"]["name"].upper(), RB(9))
+                    INSET["name"].upper(), RB(9))
+    return _finish_front(img, d, cart, legend, attrib)
 
+def _finish_front(img, d, cart, legend, attrib):
     # ---- legend ----
     d.rectangle(legend, fill=WHITE, outline=TNX_BLUE, width=8)
     lx, ly = legend[0]+IN(0.3), legend[1]+IN(0.25)
@@ -504,7 +515,8 @@ def render_back():
     tw = d.textlength(GUIDE["eyebrow"].upper(), font=eb_f)
     ribbon(d, cx+(PANEL_W-tw-IN(0.5))/2, yy, GUIDE["eyebrow"].upper(), eb_f)
     yy += IN(0.62)
-    t1, t2 = "A Traveler's Guide", f"to {CITY}"
+    t1 = GUIDE.get("printTitle1", "A Traveler's Guide")
+    t2 = GUIDE.get("printTitle2", f"to {CITY}")
     f1 = OSXB(22)
     d.text((cx+(PANEL_W-d.textlength(t1, font=f1))/2, yy), t1, font=f1, fill=TNX_BLUE)
     yy += IN(0.42)
